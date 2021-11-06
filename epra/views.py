@@ -27,18 +27,13 @@ class Dashbord(generic.ListView):
 
 
     def get_queryset(self):
-
         res = Employee.objects.values('name', 'project__name', 'project__start', 'project__end').annotate(
             pr_start=ExtractDay(F('project__start')),
             pr_end=ExtractDay(F('project__end'))
         )
-
         return res
 
     def get_context_data(self, **kwargs):
-        # В первую очередь получаем базовую реализацию контекста
         context = super(Dashbord, self).get_context_data(**kwargs)
-        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
-        context['some_data'] = 'This is just some data'
         context['period'] = fill_peroid(11)
         return context

@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ some_data }}</title>
 </head>
 <style>
     table {
         border: 1px solid black;
-        border-color: aqua;
     }
     td{
         border: 1px solid black;
-        border-color: red;
+    }
+    .g {
+        background-color: green;
+    }
+    .r {
+        background-color: red;
     }
 </style>
 <body>
@@ -27,12 +30,12 @@
             <td>{{ e.project__name }}</td>
                     {%  for p in period   %}
                         {% if forloop.counter0 < e.pr_start %}
-                            <td>0</td>
+                            <td class="r">0</td>
                         {% else %}
                             {% if forloop.counter0 >= e.pr_end %}
-                                <td>0</td>
+                                <td class="r">0</td>
                             {% else %}
-                                <td>1</td>
+                                <td class="g">1</td>
                             {% endif %}
                         {% endif %}
 
