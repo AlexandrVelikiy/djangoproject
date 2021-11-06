@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ some_data }}</title>
+</head>
+<style>
+    table {
+        border: 1px solid black;
+        border-color: aqua;
+    }
+    td{
+        border: 1px solid black;
+        border-color: red;
+    }
+</style>
+<body>
+    <table>
+        <tr>
+            <td>Период</td>
+            {%  for p in period   %}
+                <td>{{ p|date }}</td>
+            {% endfor %}
+        </tr>
+        {% for e in employee_list%}
+            <tr>
+            <td>{{ e.project__name }}</td>
+                    {%  for p in period   %}
+                        {% if forloop.counter0 < e.pr_start %}
+                            <td>0</td>
+                        {% else %}
+                            {% if forloop.counter0 >= e.pr_end %}
+                                <td>0</td>
+                            {% else %}
+                                <td>1</td>
+                            {% endif %}
+                        {% endif %}
+
+                    {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
